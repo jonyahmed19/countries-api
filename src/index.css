@@ -9,6 +9,14 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  --dark-bg-color: hsl(209, 23%, 22%);
+  --dark-article-color: hsl(207, 26%, 17%);
+  --light-mode-text: hsl(200, 15%, 8%);
+  --light-mode-input: hsl(0, 0%, 52%);
+  --light-mode-bg: hsl(0, 0%, 98%);
+  --white: hsl(0, 0%, 100%);
+}
 img {
   max-width: 100%;
   height: auto;
@@ -78,11 +86,19 @@ header h1 {
   display: flex;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 7px;
 }
 .filter select {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 7px;
 }
-
+.filter input#search:focus {
+  border: 0;
+}
+.header-elements a {
+  text-decoration: none;
+  color: var(--light-mode-text);
+}
 .mode button {
   background-color: transparent;
   border: 0;
@@ -95,6 +111,13 @@ header h1 {
   left: -22px;
   bottom: -2px;
 }
+.bottom-info {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media screen and (min-width: 600px) {
   .countries {
     grid-template-columns: repeat(2, 1fr);

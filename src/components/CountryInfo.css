@@ -1,0 +1,73 @@
+.country-info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 80px;
+}
+.btn-back {
+  font-size: 1.1rem;
+  padding: 1rem;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 7px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 7px;
+  text-decoration: none;
+}
+.country-bottom article {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+.country-stats h1 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+.info-second {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+.country-stats p,
+.info-bottom p {
+  margin: 0.7rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.country-info p span {
+  font-weight: 300;
+}
+.btn-remove {
+  border: 0;
+  padding: 1rem;
+  border-radius: 7px;
+}
+
+@media screen and (min-width: 768px) {
+  .country-bottom article {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 4%;
+  }
+  .country-bottom .flag {
+    flex-basis: 60%;
+  }
+  .country-bottom .country-stats {
+    flex-basis: 36%;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .country-bottom .flag {
+    flex-basis: 48%;
+  }
+  .country-bottom .country-stats {
+    flex-basis: 48%;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+  }
+  .country-bottom .info-second {
+    flex-direction: row;
+    column-gap: 70px;
+  }
+}
