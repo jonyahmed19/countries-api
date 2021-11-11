@@ -1,7 +1,7 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 
-const Filter = ({ search, searchtext }) => {
+const Filter = ({ search, searchtext, searchFilter }) => {
   return (
     <div className="container">
       <section className="filter">
@@ -18,14 +18,13 @@ const Filter = ({ search, searchtext }) => {
           />
         </form>
         <div>
-          <select name="select" id="select">
-            <option value="Filter by region">Filter by region</option>
+          <select name="select" id="select" onChange={searchFilter}>
+            <option value="all">Filter by region</option>
             <option value="Asia">Asia</option>
             <option value="Africa">Africa</option>
             <option value="Europe">Europe</option>
-            <option value="North America">North America</option>
-            <option value="South America">South America</option>
-            <option value="Antarctica">Antarctica</option>
+            <option value="Americas">Americas</option>
+            <option value="Oceania">Oceania</option>
           </select>
         </div>
       </section>

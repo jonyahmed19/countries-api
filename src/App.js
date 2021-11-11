@@ -6,11 +6,21 @@ import Header from "./components/Header";
 import Filter from "./components/Filter";
 import CountryInfo from "./components/CountryInfo";
 
-const URL = "https://restcountries.com/v2/all";
-
 function App() {
   const [countriesList, setCountriesList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
+  let URL = "https://restcountries.com/v2/all";
+
+  const searchFilter = (e) => {
+    const region = e.target.value.toLowerCase();
+
+    if (region !== "all") {
+      URL = `https://restcountries.com/v2/region/${region}`;
+    } else {
+      URL = "https://restcountries.com/v2/all";
+    }
+    countiesData(URL);
+  };
 
   const countiesData = async (URL) => {
     const countiesFetch = await fetch(URL);
@@ -45,7 +55,11 @@ function App() {
       <Router>
         <Header />
         <Route exact path="/">
-          <Filter search={searchButton} searchtext={searchInput} />
+          <Filter
+            searchFilter={searchFilter}
+            search={searchButton}
+            searchtext={searchInput}
+          />
           <Countries
             countriesList={
               filteredList.length > 0 ? filteredList : countriesList

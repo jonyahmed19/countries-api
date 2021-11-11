@@ -86,6 +86,7 @@ h3 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 50px;
+  margin-bottom: 80px;
 }
 .country {
   max-width: 350px;
