@@ -17,6 +17,50 @@ body {
   --light-mode-bg: hsl(0, 0%, 98%);
   --white: hsl(0, 0%, 100%);
 }
+/******** dark mode code starts ***********/
+
+body.dark-mode {
+  background-color: var(--dark-article-color);
+  transition: background-color 700ms;
+}
+.dark-mode .countries .country {
+  background-color: var(--dark-bg-color);
+  transition: background-color 700ms;
+}
+
+.dark-mode p,
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3 {
+  color: var(--white);
+}
+.dark-mode header {
+  background-color: var(--dark-bg-color);
+  transition: background-color 700ms;
+}
+
+.dark-mode header .mode button {
+  color: #fff;
+}
+.dark-mode .filter input,
+.dark-mode .filter select,
+.dark-mode .filter button {
+  background-color: var(--dark-bg-color);
+  transition: background-color 700ms;
+
+  color: #fff;
+}
+.dark-mode .filter #search {
+  border: 1px solid var(--dark-bg-color);
+}
+.dark-mode .btn-back {
+  background-color: var(--dark-bg-color);
+  color: #fff;
+  transition: background-color 700ms;
+}
+
+/******** dark mode code ends ***********/
+
 img {
   max-width: 100%;
   height: auto;
@@ -24,7 +68,15 @@ img {
 html {
   font-size: 16px;
 }
-
+a {
+  text-decoration: none;
+}
+p,
+h1,
+h2,
+h3 {
+  color: var(--light-mode-text);
+}
 .container {
   margin: auto;
   max-width: 1440px;
@@ -42,14 +94,31 @@ html {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   border-radius: 7px;
 }
-.bottom-part {
-  padding: 20px;
+.countries a:hover .country {
+  box-shadow: rgba(74, 74, 228, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+.country .bottom-part {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.bottom-part h3 {
+  margin-bottom: 12px;
 }
 .header-elements {
   display: flex;
   padding: 30px 0;
   align-items: center;
   justify-content: space-between;
+}
+.country .bottom-part p {
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+.country .bottom-part p span {
+  font-weight: 300;
 }
 
 header {
@@ -76,8 +145,10 @@ header h1 {
   background-color: #fff;
   padding: 1rem;
 }
-.filter input {
+
+div.filter input {
   width: 100%;
+  border: 1px solid #fff;
 }
 .filter button {
   cursor: pointer;

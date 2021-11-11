@@ -1,11 +1,11 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 
-const Filter = () => {
+const Filter = ({ search, searchtext }) => {
   return (
     <div className="container">
       <section className="filter">
-        <form className="form-control">
+        <form className="form-control" onSubmit={search}>
           <button type="submit">
             <FaSearch />
           </button>
@@ -14,6 +14,7 @@ const Filter = () => {
             type="search"
             name="search"
             id="search"
+            onChange={searchtext}
           />
         </form>
         <div>
