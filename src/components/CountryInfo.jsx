@@ -2,17 +2,27 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import "./CountryInfo.css";
+import BeatLoader from "react-spinners/BarLoader";
+import { css } from "@emotion/react";
 
 const CountryInfo = () => {
   const { name } = useParams();
 
   const [country, setCountry] = useState([]);
+  const [loader, setLoader] = useState(true);
+  let [color, setColor] = useState("rgb(54, 215, 183)");
+
+  const override = css`
+    display: block;
+    margin: 25vh auto 0;
+  `;
 
   const countryFetch = async () => {
     const countiesFetch = await fetch(
       `https://restcountries.com/v2/name/${name}`
     );
     const countiesRes = await countiesFetch.json();
+    setLoader(false);
     setCountry(countiesRes);
   };
   useEffect(() => {
@@ -74,52 +84,64 @@ const CountryInfo = () => {
               }
             };
 
-            return (
-              <article key={numericCode}>
-                <div className="flag">
-                  <img src={flag} alt={name} />
-                </div>
-                <div className="country-stats">
-                  <h1>{name}</h1>
-                  <div className="info-second">
-                    <div className="left-info">
-                      <p>
-                        Native Name: <span>{nativeName}</span>
-                      </p>
-                      <p>
-                        Population: <span>{population.toLocaleString()}</span>
-                      </p>
-                      <p>
-                        Region: <span>{region}</span>
-                      </p>
-                      <p>
-                        Sub Region: <span>{subregion}</span>
-                      </p>
-                      <p>
-                        Capital: <span>{saltedValue(capital)}</span>
-                      </p>
-                    </div>
-                    <div className="right-info">
-                      <p>
-                        Top Level Domain: <span>{topLevelDomain}</span>
-                      </p>
-                      <p>
-                        Currencies: <span>{saltedValue(currencies)}</span>
-                      </p>
-                      <p>
-                        languages: <span>{saltedValue(languages)}</span>
-                      </p>
+            if (loader) {
+              return (
+                <BeatLoader
+                  margin={2}
+                  color={color}
+                  loading={loader}
+                  css={override}
+                  size={15}
+                />
+              );
+            } else {
+              return (
+                <article key={numericCode}>
+                  <div className="flag">
+                    <img src={flag} alt={name} />
+                  </div>
+                  <div className="country-stats">
+                    <h1>{name}</h1>
+                    <div className="info-second">
+                      <div className="left-info">
+                        <p>
+                          Native Name: <span>{nativeName}</span>
+                        </p>
+                        <p>
+                          Population: <span>{population.toLocaleString()}</span>
+                        </p>
+                        <p>
+                          Region: <span>{region}</span>
+                        </p>
+                        <p>
+                          Sub Region: <span>{subregion}</span>
+                        </p>
+                        <p>
+                          Capital: <span>{saltedValue(capital)}</span>
+                        </p>
+                      </div>
+                      <div className="right-info">
+                        <p>
+                          Top Level Domain: <span>{topLevelDomain}</span>
+                        </p>
+                        <p>
+                          Currencies: <span>{saltedValue(currencies)}</span>
+                        </p>
+                        <p>
+                          languages: <span>{saltedValue(languages)}</span>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="info-bottom">
-                  <p>
-                    Borders:
-                    <span>{saltedValue(borders, true)}</span>
-                  </p>
-                </div>
-              </article>
-            );
+                  <div className="info-bottom">
+                    <p>
+                      Borders:
+                      <span>{saltedValue(borders, true)}</span>
+                    </p>
+                  </div>
+                </article>
+              );
+            }
           })}
         </div>
       </div>

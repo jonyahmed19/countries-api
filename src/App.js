@@ -5,10 +5,19 @@ import Countries from "./components/Countries";
 import Header from "./components/Header";
 import Filter from "./components/Filter";
 import CountryInfo from "./components/CountryInfo";
-
+import BeatLoader from "react-spinners/BarLoader";
+import { css } from "@emotion/react";
 function App() {
   const [countriesList, setCountriesList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
+  const [loader, setLoader] = useState(true);
+  let [color, setColor] = useState("rgb(54, 215, 183)");
+
+  const override = css`
+    display: block;
+    margin: 25vh auto 0;
+  `;
+
   let URL = "https://restcountries.com/v2/all";
 
   const searchFilter = (e) => {
@@ -19,12 +28,14 @@ function App() {
     } else {
       URL = "https://restcountries.com/v2/all";
     }
+
     countiesData(URL);
   };
 
   const countiesData = async (URL) => {
     const countiesFetch = await fetch(URL);
     const countiesRes = await countiesFetch.json();
+    setLoader(false);
     setCountriesList(countiesRes);
   };
   useEffect(() => {
@@ -60,11 +71,22 @@ function App() {
             search={searchButton}
             searchtext={searchInput}
           />
-          <Countries
-            countriesList={
-              filteredList.length > 0 ? filteredList : countriesList
-            }
-          />
+
+          {loader ? (
+            <BeatLoader
+              margin={2}
+              color={color}
+              loading={loader}
+              css={override}
+              size={15}
+            />
+          ) : (
+            <Countries
+              countriesList={
+                filteredList.length > 0 ? filteredList : countriesList
+              }
+            />
+          )}
         </Route>
         <Route path="/countries/:name" children={<CountryInfo />}></Route>
       </Router>
